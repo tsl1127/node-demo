@@ -16,6 +16,8 @@ var server = http.createServer(function(request, response){
 
   if(path === '/'){  // 如果用户请求的是 / 路径
     var string = fs.readFileSync('./index.html','utf8')  // 就读取 index.html 的内容
+    var amount = fs.readFileSync('./db','utf8')  //db的类型是string
+    string = string.replace('&&&amount&&&',amount)
     response.setHeader('Content-Type', 'text/html;charset=utf-8')  // 设置响应头 Content-Type
     response.write(string)
     response.end()   // 设置响应消息体
@@ -29,6 +31,18 @@ var server = http.createServer(function(request, response){
     response.setHeader('Content-Type', 'application/javascript')
     response.write(string)
     response.end()
+  }else if(path==='/pay' && method.toUpperCase() === 'POST'){
+    var amount = fs.readFileSync('./db','utf8')
+    var newAmount = amount -1  //字符串通过减号转成数字
+    if(Math.random()>0.5){
+        fs.writeFileSync('./db',newAmount)
+        response.write('success')
+        
+    }else{
+        response.write('fail')
+    }
+    response.end()
+    
   }else{  // 如果上面都不是用户请求的路径
     response.statusCode = 404
     response.setHeader('Content-Type', 'text/html;charset=utf-8')  // 设置响应头 Content-Type

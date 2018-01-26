@@ -1,10 +1,24 @@
 <title>首页</title>
 <link rel="stylesheet" href="/style.css">
-<h5>你好，这是我的第一个页面</h5>
-<button id="button">点我</button>
-<script >
+<h5>你的账户余额是 <span id="amount">&&&amount&&&</span></h5>
+<!-- <button id="button">付款1块钱</button> -->
+<!-- <script >
   function xxx(){
     alert('我是xxx')
   }
 </script>
-<script src="/main.js?callback=xxx"></script>
+<script src="/main.js?callback=xxx"></script> -->
+
+<form action="/pay" method="post">
+    <!-- <input type="text",name="number" value="1"> -->
+    <input type="submit",value="付款">
+</form>
+
+<!-- <script>
+    button.addEventListener('click',(e)=>{
+        let n = amount.innerText   //这里n的类型是string
+        let number = n-0  //或者parseInt(n,10)  把字符串变成数字
+        let newNumber =number-1
+        amount.innerText = newNumber
+    })
+</script> -->
