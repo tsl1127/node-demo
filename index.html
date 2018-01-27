@@ -18,16 +18,27 @@
 
 <script>
     button.addEventListener('click',(e)=>{
-        let image = document.createElement('img')
-        image.src='/pay'
-        image.onload = function(){
-            alert('打钱成功')
-            // window.location.reload()
-            amount.innerText = amount.innerText-1
+        let script = document.createElement('script')
+        script.src='./pay'
+        document.body.appendChild(script)
+        script.onload = function(e){
+            e.currentTarget.remove()
+        }
+        script.onerror = function(e){
+            alert('error')
+            e.currentTarget.remove()
+        }
 
-        }
-        image.onerror =function(){
-            alert('打钱失败')
-        }
+        // let image = document.createElement('img')
+        // image.src='/pay'
+        // image.onload = function(){
+        //     alert('打钱成功')
+        //     // window.location.reload()
+        //     amount.innerText = amount.innerText-1
+
+        // }
+        // image.onerror =function(){
+        //     alert('打钱失败')
+        // }
     })
 </script>
