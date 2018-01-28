@@ -42,16 +42,16 @@ var server = http.createServer(function(request, response){
         // response.write(`alert("success")
         //  window.location.reload()
         // `)
-        // response.write(`
-        // xxx.call(undefined,'success')     
-        // `)
-
         response.write(`
-        ${query.callbackName}.call(undefined,{
-          "success":true,
-          "left":${newAmount}
-        })     
+        ${query.callback}.call(undefined,'success')     
         `)
+
+        // response.write(`
+        // ${query.callback}.call(undefined,{
+        //   "success":true,
+        //   "left":${newAmount}
+        // })     
+        // `)
         
     }else{
         response.statusCode = 400

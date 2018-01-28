@@ -17,27 +17,41 @@
 <iframe src="about:blank" frameborder="0" name="result" height="200"></iframe> -->
 
 <script>
-    window.xxx = function(result){
-        // alert('这是8001写的前端代码')
-        // alert(`我得到的结果是${result}`)
-        if(result === 'success'){
+    // window.xxx = function(result){
+    //     // alert('这是8001写的前端代码')
+    //     // alert(`我得到的结果是${result}`)
+    //     if(result === 'success'){
+    //         amount.innerText = amount.innerText-1
+    //     }
+    //     else{
+            
+    //     }
+    // }
+
+    button.addEventListener('click',(e)=>{
+        let script = document.createElement('script')
+        // script.src='http://localhost:8002/pay'
+        let functionName = 'frank'+parseInt(Math.random()*100000,10)
+        //frank13838383838383837733737
+        window[functionName]=function(result){
+            if(result === 'success'){
             amount.innerText = amount.innerText-1
+            console.log('打钱')
         }
         else{
             
         }
-    }
-    button.addEventListener('click',(e)=>{
-        let script = document.createElement('script')
-        // script.src='http://localhost:8002/pay'
-        script.src='http://localhost:8002/pay?callbackName=xxx'
+        }
+        script.src='http://localhost:8002/pay?callback='+functionName
         document.body.appendChild(script)
         script.onload = function(e){
             e.currentTarget.remove()
+            delete window[functionName]
         }
         script.onerror = function(e){
             alert('error')
             e.currentTarget.remove()
+            delete window[functionName]
         }
 
         // let image = document.createElement('img')
