@@ -42,8 +42,12 @@ var server = http.createServer(function(request, response){
         // response.write(`alert("success")
         //  window.location.reload()
         // `)
+        // response.write(`
+        // xxx.call(undefined,'success')     
+        // `)
+
         response.write(`
-        amount.innerText = amount.innerText-1
+        ${query.callbackName}.call(undefined,'success')     
         `)
         
     }else{
