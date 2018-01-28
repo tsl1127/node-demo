@@ -47,7 +47,10 @@ var server = http.createServer(function(request, response){
         // `)
 
         response.write(`
-        ${query.callbackName}.call(undefined,'success')     
+        ${query.callbackName}.call(undefined,{
+          "success":true,
+          "left":${newAmount}
+        })     
         `)
         
     }else{
